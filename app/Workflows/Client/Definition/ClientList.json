@@ -1,0 +1,39 @@
+{
+    "name": "ClientList",
+    "uses": [
+        "App\\Company",
+        "App\\Client"
+    ],
+    "namespace": "App\\Workflows\\Client",
+    "startState": "GetCompany",
+    "input": {
+        "companyId": "int"
+    },
+    "output": {
+        "allClient": "Client[]"
+    },
+    "workflow": {
+        "GetCompany": {
+            "parameters": {
+                "companyId": "int"
+            },
+            "result": {
+                "company": "Company"
+            },
+            "transition": {
+                "GetAllClient": ""
+            }
+        },
+        "GetAllClient": {
+            "parameters": {
+                "company": "Company"
+            },
+            "result": {
+                "allClient": "Client[]"
+            },
+            "transition": {
+                "End": ""
+            }
+        }
+    }
+}

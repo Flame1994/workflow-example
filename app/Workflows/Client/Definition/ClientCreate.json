@@ -1,0 +1,57 @@
+{
+    "name": "ClientCreate",
+    "uses": [
+        "App\\Company",
+        "App\\Client"
+    ],
+    "namespace": "App\\Workflows\\Client",
+    "startState": "GetCompany",
+    "input": {
+        "companyId": "int",
+        "name": "string",
+        "email": "string",
+        "joined": "string"
+    },
+    "output": {
+        "client": "Client"
+    },
+    "workflow": {
+        "GetCompany": {
+            "parameters": {
+                "companyId": "int"
+            },
+            "result": {
+                "company": "Company"
+            },
+            "transition": {
+                "AssertClientUniqueForCompany": ""
+            }
+        },
+        "AssertClientUniqueForCompany": {
+            "parameters": {
+                "company": "Company",
+                "email": "string"
+            },
+            "result": {
+                "isClientUnique": "bool"
+            },
+            "transition": {
+                "CreateClient": ""
+            }
+        },
+        "CreateClient": {
+            "parameters": {
+                "company": "Company",
+                "name": "string",
+                "email": "string",
+                "joined": "string"
+            },
+            "result": {
+                "client": "Client"
+            },
+            "transition": {
+                "End": ""
+            }
+        }
+    }
+}

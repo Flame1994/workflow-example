@@ -1,0 +1,53 @@
+{
+    "name": "CompanyCreate",
+    "uses": [
+        "App\\Company"
+    ],
+    "namespace": "App\\Workflows\\Company",
+    "startState": "AssertCompanyUnique",
+    "input": {
+        "name": "string",
+        "email": "string",
+        "founded": "string"
+    },
+    "output": {
+        "company": "Company"
+    },
+    "workflow": {
+        "AssertCompanyUnique": {
+            "parameters": {
+                "email": "string"
+            },
+            "result": {
+                "isCompanyUnique": "bool"
+            },
+            "transition": {
+                "AssertFoundedBeforeCurrentDate": ""
+            }
+        },
+        "AssertFoundedBeforeCurrentDate": {
+            "parameters": {
+                "founded": "string"
+            },
+            "result": {
+                "isFoundedBeforeCurrentDate": "bool"
+            },
+            "transition": {
+                "CreateCompany": ""
+            }
+        },
+        "CreateCompany": {
+            "parameters": {
+                "name": "string",
+                "email": "string",
+                "founded": "string"
+            },
+            "result": {
+                "company": "Company"
+            },
+            "transition": {
+                "End": ""
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "name": "CompanyRead",
+    "uses": [
+        "App\\Company"
+    ],
+    "namespace": "App\\Workflows\\Company",
+    "startState": "AssertCompanyExists",
+    "input": {
+        "id": "int"
+    },
+    "output": {
+        "company": "Company"
+    },
+    "workflow": {
+        "AssertCompanyExists": {
+            "parameters": {
+                "id": "int"
+            },
+            "result": {
+                "companyExists": "bool"
+            },
+            "transition": {
+                "GetCompany": ""
+            }
+        },
+        "GetCompany": {
+            "parameters": {
+                "id": "int"
+            },
+            "result": {
+                "company": "Company"
+            },
+            "transition": {
+                "End": ""
+            }
+        }
+    }
+}
