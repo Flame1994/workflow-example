@@ -75,13 +75,13 @@ Workflow. For example, the `CompanyController@create` function starts the `Workf
 specified in its definition file.
 
 Using this structure we can easily see how the business logic flow of each endpoint is being used. The Controller is only being used to take input and give output.
-The Workflows are being used to actually do the business logic. There are a lot of better ways to hanndle and parse the input & ouput. I just wanted to show a
+The Workflows are being used to actually do the business logic. There are a lot of better ways to handle and parse the input & ouput. I just wanted to show a
 very basic version of what the workflows can do. I did not put much effort into the input, output and exception throwing.
 
 Let's take a look at a workflow. Visit the `Workflows/Company/Code/WorkflowCompanyCreate.php` class.
 
 You will see that there is an `execute` function. This is used when calling the workflow from another place in your project. You can see that
-we call this function from the `CompanyController@create` function, like this"
+we call this function from the `CompanyController@create` function, like this:
 ```php
 $company = WorkflowCompanyCreate::execute(
     $request->get('name'),
