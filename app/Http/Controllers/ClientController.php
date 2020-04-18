@@ -11,29 +11,13 @@ use Illuminate\Http\Response;
 class ClientController extends Controller
 {
     /**
-     * @return Response
-     */
-    public function index(): Response
-    {
-        //
-    }
-
-    /**
-     * @return Response
-     */
-    public function create(): Response
-    {
-        //
-    }
-
-    /**
      * @param Request $request
      *
      * @return Response
      */
-    public function store(Request $request): Response
+    public function create(Request $request): Response
     {
-        //
+        return new Response();
     }
 
     /**
@@ -41,31 +25,20 @@ class ClientController extends Controller
      *
      * @return Response
      */
-    public function show($id): Response
+    public function read(int $id): Response
     {
-        //
+        return new Response();
     }
 
     /**
-     * @param $id
+     * @param Request $request
+     * @param int $id
      *
      * @return Response
      */
-    public function edit($id): Response
+    public function update(Request $request, int $id): Response
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id): Response
-    {
-        //
+        return new Response();
     }
 
     /**
@@ -73,8 +46,16 @@ class ClientController extends Controller
      *
      * @return Response
      */
-    public function destroy($id): Response
+    public function delete(int $id): Response
     {
-        //
+        return new Response();
+    }
+
+    /**
+     * @return Response
+     */
+    public function list(): Response
+    {
+        return new Response();
     }
 }
