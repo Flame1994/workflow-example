@@ -22,7 +22,7 @@ class CreateCompaniesTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('email');
-            $table->timestamp('founded');
+            $table->dateTime('founded');
         });
     }
 

@@ -1,0 +1,49 @@
+{
+    "name": "CompanyDelete",
+    "uses": [
+        "App\\Company"
+    ],
+    "namespace": "App\\Workflows\\Company",
+    "startState": "GetCompany",
+    "input": {
+        "id": "int"
+    },
+    "output": {
+        "company": "Company"
+    },
+    "workflow": {
+        "GetCompany": {
+            "parameters": {
+                "id": "int"
+            },
+            "result": {
+                "company": "Company"
+            },
+            "transition": {
+                "DeleteAllCompanyClient": ""
+            }
+        },
+        "DeleteAllCompanyClient": {
+            "parameters": {
+                "company": "Company"
+            },
+            "result": {
+                "isDeleted": "bool"
+            },
+            "transition": {
+                "DeleteCompany": ""
+            }
+        },
+        "DeleteCompany": {
+            "parameters": {
+                "company": "Company"
+            },
+            "result": {
+                "company": "Company"
+            },
+            "transition": {
+                "End": ""
+            }
+        }
+    }
+}

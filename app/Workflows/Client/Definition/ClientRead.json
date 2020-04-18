@@ -1,0 +1,53 @@
+{
+    "name": "ClientRead",
+    "uses": [
+        "App\\Company",
+        "App\\Client"
+    ],
+    "namespace": "App\\Workflows\\Client",
+    "startState": "GetCompany",
+    "input": {
+        "companyId": "int",
+        "id": "int"
+    },
+    "output": {
+        "client": "Client"
+    },
+    "workflow": {
+        "GetCompany": {
+            "parameters": {
+                "companyId": "int"
+            },
+            "result": {
+                "company": "Company"
+            },
+            "transition": {
+                "AssertClientExists": ""
+            }
+        },
+        "AssertClientExists": {
+            "parameters": {
+                "company": "Company",
+                "id": "int"
+            },
+            "result": {
+                "clientExists": "bool"
+            },
+            "transition": {
+                "GetClient": ""
+            }
+        },
+        "GetClient": {
+            "parameters": {
+                "company": "Company",
+                "id": "int"
+            },
+            "result": {
+                "client": "Client"
+            },
+            "transition": {
+                "End": ""
+            }
+        }
+    }
+}

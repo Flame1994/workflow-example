@@ -1,0 +1,94 @@
+{
+    "name": "ClientUpdate",
+    "uses": [
+        "App\\Company",
+        "App\\Client"
+    ],
+    "namespace": "App\\Workflows\\Client",
+    "startState": "GetCompany",
+    "input": {
+        "companyId": "int",
+        "id": "int",
+        "name": "string|null",
+        "email": "string|null",
+        "joined": "string|null"
+    },
+    "output": {
+        "client": "Client"
+    },
+    "workflow": {
+        "GetCompany": {
+            "parameters": {
+                "companyId": "int"
+            },
+            "result": {
+                "company": "Company"
+            },
+            "transition": {
+                "GetClient": ""
+            }
+        },
+        "GetClient": {
+            "parameters": {
+                "company": "Company",
+                "id": "int"
+            },
+            "result": {
+                "client": "Client"
+            },
+            "transition": {
+                "ShouldUpdateClient": ""
+            }
+        },
+        "ShouldUpdateClient": {
+            "parameters": {
+                "name": "string|null",
+                "email": "string|null",
+                "joined": "string|null"
+            },
+            "result": {
+                "shouldUpdateClient": "bool"
+            },
+            "transition": {
+                "UpdateClientNameIfNeeded": "$this->shouldUpdateClient === true",
+                "End": "$this->shouldUpdateClient === false"
+            }
+        },
+        "UpdateClientNameIfNeeded": {
+            "parameters": {
+                "client": "Client",
+                "name": "string|null"
+            },
+            "result": {
+                "client": "Client"
+            },
+            "transition": {
+                "UpdateClientEmailIfNeeded": ""
+            }
+        },
+        "UpdateClientEmailIfNeeded": {
+            "parameters": {
+                "client": "Client",
+                "email": "string|null"
+            },
+            "result": {
+                "client": "Client"
+            },
+            "transition": {
+                "UpdateClientJoinedIfNeeded": ""
+            }
+        },
+        "UpdateClientJoinedIfNeeded": {
+            "parameters": {
+                "client": "Client",
+                "joined": "string|null"
+            },
+            "result": {
+                "client": "Client"
+            },
+            "transition": {
+                "End": ""
+            }
+        }
+    }
+}

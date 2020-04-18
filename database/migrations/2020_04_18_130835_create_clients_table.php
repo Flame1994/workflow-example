@@ -1,9 +1,12 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * @author Ruan Haarhoff <ruan@aptic.com>
+ * @since 20200418 Initial creation.
+ */
 class CreateClientsTable extends Migration
 {
     /**
@@ -20,8 +23,7 @@ class CreateClientsTable extends Migration
             $table->foreign('company_id')->references('id')->on('companies');
             $table->string('name');
             $table->string('email');
-            $table->string('phone_number');
-            $table->timestamp('joined');
+            $table->dateTime('joined');
         });
     }
 

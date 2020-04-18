@@ -1,0 +1,83 @@
+{
+    "name": "CompanyUpdate",
+    "uses": [
+        "App\\Company",
+        "App\\Client"
+    ],
+    "namespace": "App\\Workflows\\Company",
+    "startState": "GetCompany",
+    "input": {
+        "id": "int",
+        "name": "string|null",
+        "email": "string|null",
+        "founded": "string|null",
+        "allClient": "Client[]|null"
+    },
+    "output": {
+        "company": "Company"
+    },
+    "workflow": {
+        "GetCompany": {
+            "parameters": {
+                "id": "int"
+            },
+            "result": {
+                "company": "Company"
+            },
+            "transition": {
+                "ShouldUpdateCompany": ""
+            }
+        },
+        "ShouldUpdateCompany": {
+            "parameters": {
+                "name": "string|null",
+                "email": "string|null",
+                "founded": "string|null",
+                "allClient": "Client[]|null"
+            },
+            "result": {
+                "shouldUpdateCompany": "bool"
+            },
+            "transition": {
+                "UpdateCompanyNameIfNeeded": "$this->shouldUpdateCompany === true",
+                "End": "$this->shouldUpdateCompany === false"
+            }
+        },
+        "UpdateCompanyNameIfNeeded": {
+            "parameters": {
+                "company": "Company",
+                "name": "string|null"
+            },
+            "result": {
+                "company": "Company"
+            },
+            "transition": {
+                "UpdateCompanyEmailIfNeeded": ""
+            }
+        },
+        "UpdateCompanyEmailIfNeeded": {
+            "parameters": {
+                "company": "Company",
+                "email": "string|null"
+            },
+            "result": {
+                "company": "Company"
+            },
+            "transition": {
+                "UpdateCompanyFoundedIfNeeded": ""
+            }
+        },
+        "UpdateCompanyFoundedIfNeeded": {
+            "parameters": {
+                "company": "Company",
+                "founded": "string|null"
+            },
+            "result": {
+                "company": "Company"
+            },
+            "transition": {
+                "End": ""
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "name": "CompanyList",
+    "uses": [
+        "App\\Company"
+    ],
+    "namespace": "App\\Workflows\\Company",
+    "startState": "GetAllCompany",
+    "input": {},
+    "output": {
+        "allCompany": "Company[]|null"
+    },
+    "workflow": {
+        "GetAllCompany": {
+            "parameters": {},
+            "result": {
+                "allCompany": "Company[]"
+            },
+            "transition": {
+                "End": ""
+            }
+        }
+    }
+}

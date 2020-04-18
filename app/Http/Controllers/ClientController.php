@@ -1,6 +1,12 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Workflows\Client\Code\WorkflowClientCreate;
+use App\Workflows\Client\Code\WorkflowClientDelete;
+use App\Workflows\Client\Code\WorkflowClientList;
+use App\Workflows\Client\Code\WorkflowClientRead;
+use App\Workflows\Client\Code\WorkflowClientUpdate;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -12,50 +18,82 @@ class ClientController extends Controller
 {
     /**
      * @param Request $request
+     * @param int $companyId
      *
      * @return Response
+     * @throws Exception
      */
-    public function create(Request $request): Response
+    public function create(Request $request, int $companyId): Response
     {
-        return new Response();
+        $client = WorkflowClientCreate::execute(
+            $companyId,
+            $request->get('name'),
+            $request->get('email'),
+            $request->get('joined')
+        );
+
+        return new Response($client->toArray());
     }
 
     /**
+     * @param int $companyId
      * @param int $id
      *
      * @return Response
+     * @throws Exception
      */
-    public function read(int $id): Response
+    public function read(int $companyId, int $id): Response
     {
-        return new Response();
+        $client = WorkflowClientRead::execute($companyId, $id);
+
+        return new Response($client->toArray());
     }
 
     /**
      * @param Request $request
+     * @param int $companyId
      * @param int $id
      *
      * @return Response
+     * @throws Exception
      */
-    public function update(Request $request, int $id): Response
+    public function update(Request $request, int $companyId, int $id): Response
     {
-        return new Response();
+        $client = WorkflowClientUpdate::execute(
+            $companyId,
+            $id,
+            $request->get('name'),
+            $request->get('email'),
+            $request->get('joined')
+        );
+
+        return new Response($client->toArray());
     }
 
     /**
+     * @param int $companyId
      * @param int $id
      *
      * @return Response
+     * @throws Exception
      */
-    public function delete(int $id): Response
+    public function delete(int $companyId, int $id): Response
     {
-        return new Response();
+        $client = WorkflowClientDelete::execute($companyId, $id);
+
+        return new Response($client->toArray());
     }
 
     /**
+     * @param int $companyId
+     *
      * @return Response
+     * @throws Exception
      */
-    public function list(): Response
+    public function list(int $companyId): Response
     {
-        return new Response();
+        $allClient = WorkflowClientList::execute($companyId);
+
+        return new Response($allClient);
     }
 }
