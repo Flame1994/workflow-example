@@ -2,15 +2,16 @@
 
 use Illuminate\Database\Seeder;
 
+/**
+ * @author Ruan Haarhoff <ruan@aptic.com>
+ * @since 20200418 Initial creation.
+ */
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
-     *
-     * @return void
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        $this->call(ClientSeeder::class);
     }
 }
