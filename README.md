@@ -20,15 +20,15 @@ Copy the `.env.example` and make sure to enter a valid database, name and passwo
 cp .env.example .env
 ```
 
+Run composer install and dump autoload
+```bash
+composer install && composer dump-autoload
+```
+
 Make sure to run the key generator
 
 ```bash
 php artisan key:generate
-```
-
-Run composer install and dump autoload
-```bash
-composer install && composer dump-autoload
 ```
 
 Run migration and seeders
